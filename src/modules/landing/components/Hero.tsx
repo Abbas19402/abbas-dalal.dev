@@ -43,7 +43,7 @@ const imageVariants: Variants = {
   },
 };
 
-export default function HeroSection() {
+export default function Heskyction() {
   return (
     <div className="relative flex flex-col items-center justify-center h-fit w-full p-4 md:p-8 lg:p-12">
       <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center justify-center">  
@@ -57,20 +57,20 @@ export default function HeroSection() {
             className="text-gray-400 text-base md:text-lg mb-4 flex items-center justify-center lg:justify-start gap-3 font-mono tracking-wide"
             variants={textItemVariants}
           >
-            <span className="block w-10 h-px bg-amber-600"></span> Hello, I'm
+            <span className="block w-10 h-px bg-sky-600"></span> Hello, I'm
           </motion.p>
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight text-gray-100 mb-6"
             variants={textItemVariants}
           >
-            Abbas Ali <span className="text-amber-500">Dalal</span>
+            Abbas Ali <span className="text-sky-500">Dalal</span>
           </motion.h1>
           <motion.p
             className="text-lg md:text-xl text-neutral-300 mb-10 max-w-2xl mx-auto lg:mx-0"
             variants={textItemVariants}
           >
             I craft seamless digital experiences, blending <strong className="capitalize">beautiful design</strong> with{" "}
-            <strong className="text-amber-400">robust, scalable code</strong> as a
+            <strong className="text-sky-400">robust, scalable code</strong> as a
             passionate software engineer.
           </motion.p>
           <AnimatedActionButton variant="outline">Download Resume</AnimatedActionButton>

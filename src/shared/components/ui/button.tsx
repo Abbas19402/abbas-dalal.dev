@@ -27,7 +27,6 @@ type AnimatedActionButtonProps = AnimatedActionButtonBaseProps & (
   | AnimatedActionButtonWithChildren
 );
 
-// Enhanced ripple with multiple waves for depth
 const rippleVariants: Variants = {
   initial: {
     scale: 0,
@@ -119,8 +118,8 @@ export default function AnimatedActionButton({
     scale: 1.05,
     y: -2,
     boxShadow: variant === 'outline' 
-      ? "0 10px 40px rgba(245, 158, 11, 0.4), 0 0 0 1px rgba(245, 158, 11, 0.3)"
-      : "0 10px 40px rgba(245, 158, 11, 0.5), 0 0 0 1px rgba(251, 191, 36, 0.4)",
+      ? "0 10px 40px oklch(28.5% 0.169 237.323), 0 0 0 1px oklch(28.5% 0.169 237.323)"
+      : "0 10px 40px oklch(28.5% 0.169 237.323), 0 0 0 1px oklch(28.5% 0.169 237.323)",
     transition: {
       duration: 0.4,
       ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number],
@@ -138,8 +137,8 @@ export default function AnimatedActionButton({
   };
 
   const baseClasses = variant === 'outline'
-    ? 'bg-transparent text-amber-500 border-2 border-amber-500/40 hover:border-amber-400'
-    : 'bg-gradient-to-br from-amber-500 to-amber-600 text-zinc-950 border-2 border-amber-400/50';
+    ? 'bg-transparent text-sky-500 border-2 border-sky-500/40 hover:border-sky-400'
+    : 'bg-gradient-to-br from-sky-500 to-sky-600 text-zinc-950 border-2 border-sky-400/50';
 
   const initialTextColor: string = variant === 'outline' ? "#f59e0b" : "#09090b";
   const hoverTextColor: string = "#09090b";
@@ -167,7 +166,7 @@ export default function AnimatedActionButton({
         px-10 py-4 rounded-xl 
         font-bold tracking-widest text-base 
         transition-all duration-300 ease-out
-        focus:outline-none focus:ring-4 focus:ring-amber-500/50
+        focus:outline-none focus:ring-4 focus:ring-sky-500/50
         shadow-lg
         ${baseClasses}
         ${className}

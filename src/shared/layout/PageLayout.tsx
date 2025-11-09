@@ -9,9 +9,9 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaCode
 } from "react-icons/fa";
 
-// Enhanced main container with smoother entrance
 const mainContainerVariants: Variants = {
   hidden: { 
     opacity: 0, 
@@ -32,7 +32,6 @@ const mainContainerVariants: Variants = {
   },
 };
 
-// Enhanced utility items with better easing
 const utilityItemVariants: Variants = {
   hidden: { 
     opacity: 0, 
@@ -51,7 +50,6 @@ const utilityItemVariants: Variants = {
   },
 };
 
-// Social icons with staggered reveal
 const socialIconVariants: Variants = {
   hidden: { 
     opacity: 0, 
@@ -70,7 +68,6 @@ const socialIconVariants: Variants = {
   },
 };
 
-// Floating animation for social icons on hover
 const socialIconHover = {
   scale: 1.2,
   rotate: 5,
@@ -81,7 +78,6 @@ const socialIconHover = {
   },
 };
 
-// Menu button hover animation
 const menuButtonHover = {
   scale: 1.1,
   rotate: 90,
@@ -92,7 +88,6 @@ const menuButtonHover = {
   },
 };
 
-// Logo hover animation
 const logoHover = {
   scale: 1.05,
   transition: {
@@ -102,7 +97,6 @@ const logoHover = {
   },
 };
 
-// Scroll indicator variants
 const scrollIndicatorVariants: Variants = {
   hidden: { 
     opacity: 0,
@@ -119,7 +113,6 @@ const scrollIndicatorVariants: Variants = {
   },
 };
 
-// Bounce animation for scroll arrow
 const scrollBounceTransition: Transition = {
   duration: 1.5,
   repeat: Infinity,
@@ -127,7 +120,6 @@ const scrollBounceTransition: Transition = {
   repeatType: "reverse" as const,
 };
 
-// Background gradient animation
 const backgroundVariants: Variants = {
   initial: {
     backgroundPosition: "0% 50%",
@@ -142,7 +134,6 @@ const backgroundVariants: Variants = {
   },
 };
 
-// Glowing orb effect variants
 const orbVariants: Variants = {
   initial: {
     scale: 1,
@@ -167,7 +158,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
   return (
     <main className="relative min-h-screen w-full bg-zinc-950 text-gray-100 font-sans overflow-hidden">
       
-      {/* Animated Background Gradient */}
       <motion.div
         className="absolute inset-0 z-0"
         variants={backgroundVariants}
@@ -179,7 +169,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
         }}
       />
 
-      {/* Glowing Orbs */}
       <motion.div
         className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none z-0"
         variants={orbVariants}
@@ -205,7 +194,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
         }}
       />
 
-      {/* Grid Pattern Overlay */}
       <div 
         className="absolute inset-0 z-0 opacity-[0.02]"
         style={{
@@ -222,23 +210,21 @@ export default function PageLayout({ children }: PageLayoutProps) {
         animate="show"
       >
         
-        {/* Enhanced Header - FIXED POSITION */}
         <header className="fixed top-0 left-0 right-0 p-6 md:p-10 lg:p-12 flex justify-between items-center z-40 bg-gradient-to-b from-zinc-950 via-zinc-950/95 to-transparent">
           <motion.div
             className="relative text-2xl font-bold tracking-widest cursor-pointer group"
             variants={utilityItemVariants}
             whileHover={logoHover}
           >
-            <span className="relative z-10 text-amber-500 group-hover:text-amber-400 transition-colors">
+            <span className="relative z-10 text-sky-500 group-hover:text-sky-400 transition-colors">
               A
             </span>
             <span className="relative z-10 text-gray-100 group-hover:text-gray-200 transition-colors">
               BBAS ALI DALAL
             </span>
             
-            {/* Logo underline effect */}
             <motion.div
-              className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-amber-500 to-amber-600"
+              className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-sky-500 to-sky-600"
               initial={{ width: "0%" }}
               whileHover={{ 
                 width: "100%",
@@ -251,7 +237,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
           </motion.div>
 
           <motion.button
-            className="lg:hidden relative text-2xl text-gray-300 hover:text-amber-500 transition-colors focus:outline-none group"
+            className="lg:hidden relative text-2xl text-gray-300 hover:text-sky-500 transition-colors focus:outline-none group"
             variants={utilityItemVariants}
             whileHover={menuButtonHover}
             whileTap={{ scale: 0.9 }}
@@ -259,7 +245,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
           >
             <CiMenuFries />
             
-            {/* Glow effect on hover */}
             <motion.div
               className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity"
               style={{
@@ -269,7 +254,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
           </motion.button>
         </header>
 
-        {/* Enhanced Social Icons Bar - FIXED POSITION */}
         <motion.div
           className="fixed hidden lg:flex right-0 top-0 bottom-0 pr-6 md:pr-10 lg:pr-12 py-32 flex-col space-y-6 items-end justify-center z-40"
           initial="hidden"
@@ -279,9 +263,8 @@ export default function PageLayout({ children }: PageLayoutProps) {
             delayChildren: 0.8 
           } as Transition}
         >
-          {/* Vertical line */}
           <motion.div
-            className="absolute right-6 md:right-10 lg:right-[3.5rem] top-32 bottom-32 w-px bg-gradient-to-b from-transparent via-amber-500/30 to-transparent"
+            className="absolute right-6 md:right-10 lg:right-[3.5rem] top-32 bottom-32 w-px bg-gradient-to-b from-transparent via-sky-500/30 to-transparent"
             initial={{ scaleY: 0 }}
             animate={{ 
               scaleY: 1,
@@ -305,7 +288,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
               <motion.a
                 key={label}
                 href={href}
-                className="relative group text-gray-400 hover:text-amber-500 transition-colors"
+                className="relative group text-gray-400 hover:text-sky-500 transition-colors"
                 variants={socialIconVariants}
                 whileHover={socialIconHover}
                 whileTap={{ scale: 0.9 }}
@@ -313,7 +296,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
               >
                 <Icon size={20} />
                 
-                {/* Glow effect */}
                 <motion.div
                   className="absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity"
                   style={{
@@ -321,9 +303,8 @@ export default function PageLayout({ children }: PageLayoutProps) {
                   }}
                 />
 
-                {/* Tooltip */}
                 <motion.span
-                  className="absolute right-full mr-4 px-3 py-1 bg-zinc-800 text-amber-500 text-sm rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                  className="absolute right-full mr-4 px-3 py-1 bg-zinc-800 text-sky-500 text-sm rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
                   initial={{ x: 10 }}
                   whileHover={{ x: 0 }}
                 >
@@ -334,7 +315,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
           </motion.div>
         </motion.div>
         
-        {/* Enhanced Scroll Indicator */}
         <motion.div
           className="fixed hidden lg:flex bottom-10 right-10 flex-col items-center justify-center z-30"
           variants={scrollIndicatorVariants}
@@ -342,9 +322,8 @@ export default function PageLayout({ children }: PageLayoutProps) {
           animate="visible"
         >
           <motion.div className="flex flex-col items-center">
-            {/* Animated line */}
             <motion.div
-              className="w-px h-12 mb-2 bg-gradient-to-b from-transparent via-amber-500 to-transparent"
+              className="w-px h-12 mb-2 bg-gradient-to-b from-transparent via-sky-500 to-transparent"
               animate={{
                 scaleY: [1, 1.2, 1],
                 opacity: [0.5, 1, 0.5],
@@ -356,15 +335,13 @@ export default function PageLayout({ children }: PageLayoutProps) {
               }}
             />
             
-            {/* Arrow with pulse effect */}
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={scrollBounceTransition}
               className="relative"
             >
-              <FaArrowDown className="text-amber-500 relative z-10" size={24} />
+              <FaArrowDown className="text-sky-500 relative z-10" size={24} />
               
-              {/* Pulse rings */}
               <motion.div
                 className="absolute inset-0 rounded-full"
                 animate={{
@@ -382,9 +359,8 @@ export default function PageLayout({ children }: PageLayoutProps) {
               />
             </motion.div>
 
-            {/* Scroll text */}
             <motion.span
-              className="mt-2 text-xs text-amber-500/70 tracking-widest"
+              className="mt-2 text-xs text-sky-500/70 tracking-widest"
               animate={{
                 opacity: [0.5, 1, 0.5],
               }}
@@ -399,21 +375,10 @@ export default function PageLayout({ children }: PageLayoutProps) {
           </motion.div>
         </motion.div>
 
-        {/* Content Area with fade-in edges */}
-        {/* // 🛑 FIX APPLIED HERE: 
-          // Replaced h-screen with flex flex-col to enable proper space filling
-          // of the scrollable child div.
-        */}
         <div className="relative z-20 w-full min-h-screen flex flex-col"> 
           
-          {/* Top fade overlay (Remains fixed and visible) */}
           <div className="fixed top-0 left-0 right-0 h-32 bg-gradient-to-b from-zinc-950 via-zinc-950/50 to-transparent pointer-events-none z-30" />
           
-          {/* // 🛑 FIX APPLIED HERE: 
-            // Added flex-grow to ensure this element takes up all remaining vertical space 
-            // and removed h-full since flex-grow handles the height.
-            // Increased padding-top for guaranteed clearance under the fixed header.
-          */}
           <div className="relative flex-grow overflow-y-auto custom-scrollbar pt-24 md:pt-32 lg:pt-44 pb-10 px-6 md:px-10 lg:px-12">
             {children}
           </div>
