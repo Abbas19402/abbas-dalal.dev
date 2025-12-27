@@ -1,0 +1,543 @@
+{
+    "meta": {
+        "title": "Abbas Ali Dalal - Creative Developer & Design Engineer",
+        "description": "Award-winning developer crafting immersive digital experiences with Next.js, Three.js, and creative code.",
+        "keywords": [
+            "Creative Developer",
+            "Design Engineer",
+            "WebGL",
+            "Next.js",
+            "Framer Motion",
+            "Three.js"
+        ],
+        "siteUrl": "https://abbas-dalal.dev",
+        "author": "Abbas Ali Dalal",
+        "social": {
+            "github": "https://github.com/abbasdalal",
+            "linkedin": "https://linkedin.com/in/abbasdalal",
+            "instagram": "https://instagram.com/abbasdalal",
+            "email": "hello@abbas-dalal.dev"
+        }
+    },
+    "hero": {
+        "greeting": "Hello, I'm",
+        "name": "Abbas Ali Dalal",
+        "tagline": "Creative Developer",
+        "description": "I craft immersive digital experiences that blur the line between art and technology.",
+        "cta": {
+            "primary": {
+                "text": "View My Work",
+                "href": "#showcase"
+            },
+            "secondary": {
+                "text": "Get In Touch",
+                "href": "#contact"
+            }
+        },
+        "stats": [
+            {
+                "value": "50+",
+                "label": "Projects Delivered"
+            },
+            {
+                "value": "15+",
+                "label": "Happy Clients"
+            },
+            {
+                "value": "5+",
+                "label": "Years Experience"
+            }
+        ]
+    },
+    "about": {
+        "title": "About Me",
+        "subtitle": "The Story Behind the Code",
+        "scrollytellingStages": [
+            {
+                "id": "stage-1",
+                "title": "The Beginning",
+                "description": "My journey started with a simple fascination: What if websites could feel alive?",
+                "visual": {
+                    "type": "image",
+                    "src": "/images/about/beginning.jpg",
+                    "parallaxSpeed": 0.5
+                }
+            },
+            {
+                "id": "stage-2",
+                "title": "The Craft",
+                "description": "I dove deep into the intersection of design and development, mastering tools like React, Three.js, and GLSL shaders.",
+                "visual": {
+                    "type": "code",
+                    "snippet": "const magic = creativity + code;",
+                    "language": "javascript"
+                }
+            },
+            {
+                "id": "stage-3",
+                "title": "The Philosophy",
+                "description": "Every project is an opportunity to push boundaries and create experiences that users remember.",
+                "visual": {
+                    "type": "gradient",
+                    "colors": [
+                        "#0ea5e9",
+                        "#8b5cf6",
+                        "#ec4899"
+                    ]
+                }
+            }
+        ]
+    },
+    "showcase": {
+        "title": "Featured Work",
+        "subtitle": "Projects that won Site of the Day",
+        "projects": [
+            {
+                "id": "project-1",
+                "title": "Quantum Commerce",
+                "slug": "quantum-commerce",
+                "category": "E-Commerce Platform",
+                "year": "2024",
+                "client": "Quantum Inc.",
+                "description": "An immersive 3D shopping experience that reimagines online retail. Users navigate through a virtual showroom powered by WebGL and physics simulations.",
+                "theme": {
+                    "primary": "#0ea5e9",
+                    "secondary": "#0c4a6e",
+                    "background": "#082f49"
+                },
+                "tags": [
+                    "Next.js",
+                    "Three.js",
+                    "GLSL",
+                    "R3F",
+                    "Zustand"
+                ],
+                "media": {
+                    "hero": "/images/projects/quantum/hero.jpg",
+                    "gallery": [
+                        "/images/projects/quantum/1.jpg",
+                        "/images/projects/quantum/2.jpg",
+                        "/images/projects/quantum/3.jpg"
+                    ],
+                    "video": "/videos/projects/quantum-demo.mp4"
+                },
+                "awards": [
+                    "Awwwards Site of the Day",
+                    "FWA Site of the Day",
+                    "CSS Design Awards"
+                ],
+                "links": {
+                    "live": "https://quantum-commerce.com",
+                    "github": null
+                },
+                "metrics": {
+                    "conversionIncrease": "+127%",
+                    "engagement": "+340%",
+                    "loadTime": "< 2s"
+                }
+            },
+            {
+                "id": "project-2",
+                "title": "Neural Studio",
+                "slug": "neural-studio",
+                "category": "Creative Agency Portfolio",
+                "year": "2024",
+                "client": "Neural Design Co.",
+                "description": "A bold portfolio site featuring cursor-reactive particle systems and scroll-driven animations. Every interaction tells a story.",
+                "theme": {
+                    "primary": "#8b5cf6",
+                    "secondary": "#6d28d9",
+                    "background": "#2e1065"
+                },
+                "tags": [
+                    "Next.js 15",
+                    "Framer Motion",
+                    "Canvas API",
+                    "GSAP"
+                ],
+                "media": {
+                    "hero": "/images/projects/neural/hero.jpg",
+                    "gallery": [
+                        "/images/projects/neural/1.jpg",
+                        "/images/projects/neural/2.jpg"
+                    ],
+                    "video": "/videos/projects/neural-demo.mp4"
+                },
+                "awards": [
+                    "Awwwards Site of the Month",
+                    "FWA Mobile of the Day"
+                ],
+                "links": {
+                    "live": "https://neural-studio.com",
+                    "github": null
+                },
+                "metrics": {
+                    "avgSessionTime": "4m 32s",
+                    "bounceRate": "12%",
+                    "leadIncrease": "+89%"
+                }
+            },
+            {
+                "id": "project-3",
+                "title": "Stellar Finance",
+                "slug": "stellar-finance",
+                "category": "FinTech Dashboard",
+                "year": "2023",
+                "client": "Stellar Capital",
+                "description": "A real-time cryptocurrency dashboard with smooth chart animations and glassmorphic UI. Data visualization meets aesthetic perfection.",
+                "theme": {
+                    "primary": "#ec4899",
+                    "secondary": "#9d174d",
+                    "background": "#500724"
+                },
+                "tags": [
+                    "Next.js",
+                    "D3.js",
+                    "WebSockets",
+                    "TailwindCSS"
+                ],
+                "media": {
+                    "hero": "/images/projects/stellar/hero.jpg",
+                    "gallery": [
+                        "/images/projects/stellar/1.jpg",
+                        "/images/projects/stellar/2.jpg",
+                        "/images/projects/stellar/3.jpg",
+                        "/images/projects/stellar/4.jpg"
+                    ],
+                    "video": "/videos/projects/stellar-demo.mp4"
+                },
+                "awards": [
+                    "Awwwards Honorable Mention"
+                ],
+                "links": {
+                    "live": "https://stellar-finance.io",
+                    "github": null
+                },
+                "metrics": {
+                    "tradingVolume": "+210%",
+                    "activeUsers": "50K+",
+                    "satisfaction": "4.9/5"
+                }
+            },
+            {
+                "id": "project-4",
+                "title": "Ethereal Gallery",
+                "slug": "ethereal-gallery",
+                "category": "Art Installation",
+                "year": "2023",
+                "client": "Modern Art Museum",
+                "description": "An experimental web experience where art comes alive. Users explore a 3D gallery with motion-captured interactions and spatial audio.",
+                "theme": {
+                    "primary": "#f59e0b",
+                    "secondary": "#92400e",
+                    "background": "#451a03"
+                },
+                "tags": [
+                    "Three.js",
+                    "WebGL",
+                    "Web Audio API",
+                    "React"
+                ],
+                "media": {
+                    "hero": "/images/projects/ethereal/hero.jpg",
+                    "gallery": [
+                        "/images/projects/ethereal/1.jpg",
+                        "/images/projects/ethereal/2.jpg"
+                    ],
+                    "video": "/videos/projects/ethereal-demo.mp4"
+                },
+                "awards": [
+                    "Awwwards Site of the Day",
+                    "Webby Award Nominee"
+                ],
+                "links": {
+                    "live": "https://ethereal-gallery.art",
+                    "github": null
+                },
+                "metrics": {
+                    "visitors": "250K+",
+                    "avgTime": "6m 18s",
+                    "shares": "12K+"
+                }
+            }
+        ]
+    },
+    "services": {
+        "title": "What I Do",
+        "subtitle": "Expertise across the full spectrum",
+        "offerings": [
+            {
+                "id": "service-1",
+                "icon": "code",
+                "title": "Creative Development",
+                "description": "Pushing the boundaries of web development with cutting-edge technologies and innovative approaches.",
+                "details": [
+                    "Custom WebGL experiences",
+                    "Advanced React patterns",
+                    "Performance optimization",
+                    "Headless CMS integration"
+                ],
+                "technologies": [
+                    "React",
+                    "Next.js",
+                    "Three.js",
+                    "GLSL",
+                    "TypeScript"
+                ]
+            },
+            {
+                "id": "service-2",
+                "icon": "palette",
+                "title": "Design Engineering",
+                "description": "Bridging the gap between design and code to create pixel-perfect, highly interactive interfaces.",
+                "details": [
+                    "Component architecture",
+                    "Design systems",
+                    "Micro-interactions",
+                    "Responsive layouts"
+                ],
+                "technologies": [
+                    "Framer Motion",
+                    "GSAP",
+                    "Figma",
+                    "Tailwind CSS",
+                    "CSS-in-JS"
+                ]
+            },
+            {
+                "id": "service-3",
+                "icon": "cube",
+                "title": "3D & Interactive",
+                "description": "Crafting immersive 3D experiences that captivate users and elevate brands.",
+                "details": [
+                    "3D product configurators",
+                    "Virtual showrooms",
+                    "Particle systems",
+                    "Physics simulations"
+                ],
+                "technologies": [
+                    "Three.js",
+                    "R3F",
+                    "@react-three/drei",
+                    "Blender",
+                    "WebGL"
+                ]
+            },
+            {
+                "id": "service-4",
+                "icon": "rocket",
+                "title": "Performance & SEO",
+                "description": "Ensuring blazing-fast load times and top search rankings without compromising on visual richness.",
+                "details": [
+                    "Core Web Vitals optimization",
+                    "Code splitting strategies",
+                    "Image optimization",
+                    "Technical SEO"
+                ],
+                "technologies": [
+                    "Lighthouse",
+                    "Next.js Image",
+                    "Vercel Analytics",
+                    "Schema.org"
+                ]
+            }
+        ]
+    },
+    "testimonials": {
+        "title": "Client Love",
+        "subtitle": "What people say about working with me",
+        "items": [
+            {
+                "id": "testimonial-1",
+                "quote": "Abbas transformed our vision into a stunning reality. The attention to detail and creative problem-solving was exceptional.",
+                "author": "Sarah Chen",
+                "role": "CEO, Quantum Inc.",
+                "avatar": "/images/testimonials/sarah.jpg"
+            },
+            {
+                "id": "testimonial-2",
+                "quote": "Working with Abbas was a game-changer. The site not only looks incredible but performs flawlessly.",
+                "author": "Marcus Rodriguez",
+                "role": "Creative Director, Neural Design Co.",
+                "avatar": "/images/testimonials/marcus.jpg"
+            },
+            {
+                "id": "testimonial-3",
+                "quote": "Rare combination of technical excellence and artistic vision. Highly recommend for any high-end web project.",
+                "author": "Emily Nakamura",
+                "role": "Product Lead, Stellar Capital",
+                "avatar": "/images/testimonials/emily.jpg"
+            }
+        ]
+    },
+    "skills": {
+        "title": "Tech Stack",
+        "subtitle": "The tools I use to build magic",
+        "categories": [
+            {
+                "name": "Frontend",
+                "items": [
+                    {
+                        "name": "React",
+                        "proficiency": 95
+                    },
+                    {
+                        "name": "Next.js",
+                        "proficiency": 98
+                    },
+                    {
+                        "name": "TypeScript",
+                        "proficiency": 92
+                    },
+                    {
+                        "name": "Tailwind CSS",
+                        "proficiency": 90
+                    }
+                ]
+            },
+            {
+                "name": "Animation",
+                "items": [
+                    {
+                        "name": "Framer Motion",
+                        "proficiency": 95
+                    },
+                    {
+                        "name": "GSAP",
+                        "proficiency": 88
+                    },
+                    {
+                        "name": "Lottie",
+                        "proficiency": 85
+                    }
+                ]
+            },
+            {
+                "name": "3D & WebGL",
+                "items": [
+                    {
+                        "name": "Three.js",
+                        "proficiency": 90
+                    },
+                    {
+                        "name": "React Three Fiber",
+                        "proficiency": 92
+                    },
+                    {
+                        "name": "GLSL Shaders",
+                        "proficiency": 80
+                    }
+                ]
+            },
+            {
+                "name": "Tools & Platforms",
+                "items": [
+                    {
+                        "name": "Git",
+                        "proficiency": 95
+                    },
+                    {
+                        "name": "Figma",
+                        "proficiency": 88
+                    },
+                    {
+                        "name": "Vercel",
+                        "proficiency": 90
+                    }
+                ]
+            }
+        ]
+    },
+    "contact": {
+        "title": "Let's Create Together",
+        "subtitle": "Have a project in mind? Let's talk.",
+        "email": "hello@abbas-dalal.dev",
+        "availability": "Available for freelance projects",
+        "calendly": "https://calendly.com/abbasdalal",
+        "form": {
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "text",
+                    "label": "Your Name",
+                    "placeholder": "John Doe",
+                    "required": true
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "label": "Your Email",
+                    "placeholder": "john@example.com",
+                    "required": true
+                },
+                {
+                    "name": "projectType",
+                    "type": "select",
+                    "label": "Project Type",
+                    "options": [
+                        "Website",
+                        "Web App",
+                        "3D Experience",
+                        "Other"
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "budget",
+                    "type": "select",
+                    "label": "Budget Range",
+                    "options": [
+                        "< $10K",
+                        "$10K - $25K",
+                        "$25K - $50K",
+                        "$50K+"
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "message",
+                    "type": "textarea",
+                    "label": "Tell me about your project",
+                    "placeholder": "Share your vision...",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "theme": {
+        "colors": {
+            "primary": "#0ea5e9",
+            "secondary": "#8b5cf6",
+            "accent": "#ec4899",
+            "background": {
+                "dark": "#09090b",
+                "darker": "#000000"
+            },
+            "text": {
+                "primary": "#f4f4f5",
+                "secondary": "#a1a1aa",
+                "muted": "#71717a"
+            }
+        },
+        "fonts": {
+            "heading": "var(--font-geist-sans)",
+            "body": "var(--font-geist-sans)",
+            "mono": "var(--font-geist-mono)"
+        },
+        "effects": {
+            "glassmorphism": {
+                "background": "rgba(255, 255, 255, 0.05)",
+                "backdropFilter": "blur(10px)",
+                "border": "1px solid rgba(255, 255, 255, 0.1)"
+            },
+            "noise": {
+                "opacity": 0.03,
+                "blend": "overlay"
+            },
+            "grid": {
+                "color": "rgba(14, 165, 233, 0.05)",
+                "size": "50px"
+            }
+        }
+    }
+}
