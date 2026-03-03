@@ -2,39 +2,15 @@
 
 import { motion } from 'motion/react';
 import { useUIStore } from '@shared/store/useUIStore';
+import portfolioData from '@shared/constants/portfolioData.json';
 
 export default function About() {
     const setCursorVariant = useUIStore((state) => state.setCursorVariant);
 
-    const principles = [
-        {
-            title: "User-Centric Design",
-            description: "Every decision is made with the end user in mind. Beautiful interfaces that are intuitive and accessible.",
-            icon: "👤",
-            color: "#0ea5e9"
-        },
-        {
-            title: "Performance First",
-            description: "Speed matters. Optimized code and efficient architecture ensure lightning-fast experiences.",
-            icon: "⚡",
-            color: "#8b5cf6"
-        },
-        {
-            title: "Attention to Detail",
-            description: "The difference between good and great is in the details. Pixel-perfect execution, every time.",
-            icon: "✨",
-            color: "#ec4899"
-        },
-        {
-            title: "Innovation Driven",
-            description: "Pushing boundaries with cutting-edge tech. Always exploring new ways to create better experiences.",
-            icon: "🚀",
-            color: "#f59e0b"
-        }
-    ];
+    const { title, subtitle, principles, stats } = portfolioData.approach;
 
     return (
-        <section className="relative py-32 px-6 md:px-10 lg:px-20 bg-zinc-950">
+        <section className="relative py-32 px-6 md:px-10 lg:px-20 bg-zinc-950" id="about">
             <div className="max-w-7xl mx-auto">
                 {/* Section header */}
                 <motion.div
@@ -44,10 +20,9 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="text-5xl md:text-7xl font-bold mb-6">My Approach</h2>
+                    <h2 className="text-5xl md:text-7xl font-bold mb-6">{title}</h2>
                     <p className="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-                        I believe in creating digital experiences that are not just beautiful,
-                        but meaningful, performant, and built to last.
+                        {subtitle}
                     </p>
                 </motion.div>
 
@@ -110,12 +85,7 @@ export default function About() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {[
-                            { value: "100%", label: "Client Satisfaction" },
-                            { value: "50+", label: "Projects Completed" },
-                            { value: "5+", label: "Years Experience" },
-                            { value: "24/7", label: "Problem Solver" }
-                        ].map((stat, index) => (
+                        {stats.map((stat, index) => (
                             <motion.div
                                 key={stat.label}
                                 className="text-center"

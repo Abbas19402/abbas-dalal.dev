@@ -11,10 +11,12 @@ import {
   FaLinkedinIn,
   FaCode
 } from "react-icons/fa";
+import Header from "@shared/components/Header";
+import Logo from "@shared/components/Logo";
 
 const mainContainerVariants: Variants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     scale: 0.95,
     y: 20,
   },
@@ -33,8 +35,8 @@ const mainContainerVariants: Variants = {
 };
 
 const utilityItemVariants: Variants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     x: -30,
     scale: 0.8,
   },
@@ -51,8 +53,8 @@ const utilityItemVariants: Variants = {
 };
 
 const socialIconVariants: Variants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     x: 30,
     scale: 0.5,
   },
@@ -98,11 +100,11 @@ const logoHover = {
 };
 
 const scrollIndicatorVariants: Variants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: -20,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     transition: {
@@ -157,7 +159,7 @@ interface PageLayoutProps {
 export default function PageLayout({ children }: PageLayoutProps) {
   return (
     <main className="relative min-h-screen w-full bg-zinc-950 text-gray-100 font-sans overflow-hidden">
-      
+
       <motion.div
         className="absolute inset-0 z-0"
         variants={backgroundVariants}
@@ -194,7 +196,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
         }}
       />
 
-      <div 
+      <div
         className="absolute inset-0 z-0 opacity-[0.02]"
         style={{
           backgroundImage: `linear-gradient(rgba(245, 158, 11, 0.5) 1px, transparent 1px),
@@ -202,71 +204,26 @@ export default function PageLayout({ children }: PageLayoutProps) {
           backgroundSize: '50px 50px',
         }}
       />
-      
+
       <motion.div
         className="relative w-full h-full min-h-screen z-10"
         variants={mainContainerVariants}
         initial="hidden"
         animate="show"
       >
-        
-        <header className="fixed top-0 left-0 right-0 p-6 md:p-10 lg:p-12 flex justify-between items-center z-40 bg-gradient-to-b from-zinc-950 via-zinc-950/95 to-transparent">
-          <motion.div
-            className="relative text-2xl font-bold tracking-widest cursor-pointer group"
-            variants={utilityItemVariants}
-            whileHover={logoHover}
-          >
-            <span className="relative z-10 text-sky-500 group-hover:text-sky-400 transition-colors">
-              A
-            </span>
-            <span className="relative z-10 text-gray-100 group-hover:text-gray-200 transition-colors">
-              BBAS ALI DALAL
-            </span>
-            
-            <motion.div
-              className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-sky-500 to-sky-600"
-              initial={{ width: "0%" }}
-              whileHover={{ 
-                width: "100%",
-                transition: {
-                  duration: 0.3,
-                  ease: "easeOut",
-                }
-              }}
-            />
-          </motion.div>
-
-          <motion.button
-            className="lg:hidden relative text-2xl text-gray-300 hover:text-sky-500 transition-colors focus:outline-none group"
-            variants={utilityItemVariants}
-            whileHover={menuButtonHover}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Open Menu"
-          >
-            <CiMenuFries />
-            
-            <motion.div
-              className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity"
-              style={{
-                background: "radial-gradient(circle, rgba(245, 158, 11, 0.6) 0%, transparent 70%)",
-              }}
-            />
-          </motion.button>
-        </header>
-
         <motion.div
           className="fixed hidden lg:flex right-0 top-0 bottom-0 pr-6 md:pr-10 lg:pr-12 py-32 flex-col space-y-6 items-end justify-center z-40"
           initial="hidden"
           animate="show"
-          transition={{ 
-            staggerChildren: 0.1, 
-            delayChildren: 0.8 
+          transition={{
+            staggerChildren: 0.1,
+            delayChildren: 0.8
           } as Transition}
         >
           <motion.div
             className="absolute right-6 md:right-10 lg:right-[3.5rem] top-32 bottom-32 w-px bg-gradient-to-b from-transparent via-sky-500/30 to-transparent"
             initial={{ scaleY: 0 }}
-            animate={{ 
+            animate={{
               scaleY: 1,
               transition: {
                 delay: 1.2,
@@ -295,7 +252,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
                 aria-label={label}
               >
                 <Icon size={20} />
-                
+
                 <motion.div
                   className="absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity"
                   style={{
@@ -314,7 +271,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
             ))}
           </motion.div>
         </motion.div>
-        
+
         <motion.div
           className="fixed hidden lg:flex bottom-10 right-10 flex-col items-center justify-center z-30"
           variants={scrollIndicatorVariants}
@@ -334,14 +291,14 @@ export default function PageLayout({ children }: PageLayoutProps) {
                 ease: "easeInOut" as const,
               }}
             />
-            
+
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={scrollBounceTransition}
               className="relative"
             >
               <FaArrowDown className="text-sky-500 relative z-10" size={24} />
-              
+
               <motion.div
                 className="absolute inset-0 rounded-full"
                 animate={{
@@ -375,14 +332,47 @@ export default function PageLayout({ children }: PageLayoutProps) {
           </motion.div>
         </motion.div>
 
-        <div className="relative z-20 w-full min-h-screen flex flex-col"> 
-          
-          <div className="fixed top-0 left-0 right-0 h-32 bg-gradient-to-b from-zinc-950 via-zinc-950/50 to-transparent pointer-events-none z-30" />
-          
-          <div className="relative flex-grow overflow-y-auto custom-scrollbar pt-24 md:pt-32 lg:pt-44 pb-10 px-6 md:px-10 lg:px-12">
+        <div className="relative z-20 w-full min-h-screen flex flex-col">
+          <div className="w-full h-20 max-w-7xl mx-auto p-2 flex justify-between items-center">
+            {/* <Logo />
+            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+              {[
+                { label: "Home", href: "#hero" },
+                { label: "Showcase", href: "#projects" },
+                { label: "About", href: "#about" },
+                { label: "Skills", href: "#skills" },
+                { label: "Testimonials", href: "#testimonials" },
+                { label: "Contact", href: "#contact" },
+              ].map((item) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  className="relative text-sm font-medium text-gray-400 hover:text-sky-500 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-sky-500 origin-left"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  />
+                </motion.a>
+              ))}
+            </nav> */}
+
+            {/* Mobile Menu Icon (Placeholder for future implementation) */}
+            {/* <button className="md:hidden text-gray-400 hover:text-white transition-colors">
+              <CiMenuFries size={24} />
+            </button> */}
+
+            <Header />
+          </div>
+          <div className="relative flex-grow overflow-y-auto custom-scrollbar pb-10 px-6 md:px-10 lg:px-12">
             {children}
           </div>
-          
+
           {/* Bottom fade overlay (Remains fixed and visible) */}
           <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none z-30" />
         </div>

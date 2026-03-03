@@ -18,6 +18,7 @@ export default function Showcase() {
     return (
         <section
             ref={containerRef}
+            id="projects"
             className="relative py-20 px-6 md:px-10 lg:px-20"
         >
             <div className="max-w-7xl mx-auto">

@@ -36,16 +36,64 @@
         },
         "stats": [
             {
-                "value": "50+",
+                "value": "5+",
                 "label": "Projects Delivered"
             },
             {
-                "value": "15+",
-                "label": "Happy Clients"
+                "value": "5K+",
+                "label": "Hours Coded"
+            },
+            {
+                "value": "2+",
+                "label": "Years Experience"
+            }
+        ]
+    },
+    "approach": {
+        "title": "My Approach",
+        "subtitle": "I believe in creating digital experiences that are not just beautiful, but meaningful, performant, and built to last.",
+        "principles": [
+            {
+                "title": "User-Centric Design",
+                "description": "Every decision is made with the end user in mind. Beautiful interfaces that are intuitive and accessible.",
+                "icon": "👤",
+                "color": "#0ea5e9"
+            },
+            {
+                "title": "Performance First",
+                "description": "Speed matters. Optimized code and efficient architecture ensure lightning-fast experiences.",
+                "icon": "⚡",
+                "color": "#8b5cf6"
+            },
+            {
+                "title": "Attention to Detail",
+                "description": "The difference between good and great is in the details. Pixel-perfect execution, every time.",
+                "icon": "✨",
+                "color": "#ec4899"
+            },
+            {
+                "title": "Innovation Driven",
+                "description": "Pushing boundaries with cutting-edge tech. Always exploring new ways to create better experiences.",
+                "icon": "🚀",
+                "color": "#f59e0b"
+            }
+        ],
+        "stats": [
+            {
+                "value": "2K+",
+                "label": "Commits Pushed"
             },
             {
                 "value": "5+",
+                "label": "Projects Completed"
+            },
+            {
+                "value": "2+",
                 "label": "Years Experience"
+            },
+            {
+                "value": "24/7",
+                "label": "Problem Solver"
             }
         ]
     },
@@ -93,47 +141,53 @@
         "subtitle": "Projects that won Site of the Day",
         "projects": [
             {
-                "id": "project-1",
-                "title": "Quantum Commerce",
-                "slug": "quantum-commerce",
-                "category": "E-Commerce Platform",
-                "year": "2024",
-                "client": "Quantum Inc.",
-                "description": "An immersive 3D shopping experience that reimagines online retail. Users navigate through a virtual showroom powered by WebGL and physics simulations.",
+                "id": "project-zephyr",
+                "title": "Zephyr",
+                "slug": "zephyr-project-management",
+                "category": "Project Management & Agile Platform",
+                "year": "2025",
+                "client": "Internal Product",
+                "description": "Zephyr is a modern project management platform for agile teams, supporting backlogs, epics, sprints, and stories. It includes real-time personal and group chat powered by Kafka, STOMP, and SockJS, role-based access control (RBAC), and performance-focused analytics — built for scalability and developer efficiency.",
                 "theme": {
-                    "primary": "#0ea5e9",
-                    "secondary": "#0c4a6e",
-                    "background": "#082f49"
+                    "primary": "#2563eb",
+                    "secondary": "#1e3a8a",
+                    "background": "#0f172a"
                 },
                 "tags": [
                     "Next.js",
-                    "Three.js",
-                    "GLSL",
-                    "R3F",
-                    "Zustand"
+                    "React",
+                    "TypeScript",
+                    "TanStack Query",
+                    "Spring Boot",
+                    "MySQL",
+                    "Kafka",
+                    "STOMP",
+                    "SockJS",
+                    "RBAC",
+                    "Agile",
+                    "Scrum"
                 ],
                 "media": {
-                    "hero": "/images/projects/quantum/hero.jpg",
+                    "hero": "/images/projects/zephyr/hero.png",
                     "gallery": [
-                        "/images/projects/quantum/1.jpg",
-                        "/images/projects/quantum/2.jpg",
-                        "/images/projects/quantum/3.jpg"
+                        "/images/projects/zephyr/backlog.png",
+                        "/images/projects/zephyr/epics.png",
+                        "/images/projects/zephyr/sprints.png",
+                        "/images/projects/zephyr/kanban.png",
+                        "/images/projects/zephyr/chat.png"
                     ],
-                    "video": "/videos/projects/quantum-demo.mp4"
+                    "video": null
                 },
-                "awards": [
-                    "Awwwards Site of the Day",
-                    "FWA Site of the Day",
-                    "CSS Design Awards"
-                ],
+                "awards": [],
                 "links": {
-                    "live": "https://quantum-commerce.com",
-                    "github": null
+                    "live": null,
+                    "github": "https://github.com/yourorg/zephyr"
                 },
                 "metrics": {
-                    "conversionIncrease": "+127%",
-                    "engagement": "+340%",
-                    "loadTime": "< 2s"
+                    "storiesManaged": "10k+",
+                    "avgSprintCompletion": "92%",
+                    "messageThroughput": "50k+/day",
+                    "apiResponseTime": "< 150ms"
                 }
             },
             {
@@ -344,29 +398,50 @@
         ]
     },
     "testimonials": {
-        "title": "Client Love",
-        "subtitle": "What people say about working with me",
+        "title": "Behind the Code",
+        "subtitle": "The human side of my digital work",
         "items": [
             {
-                "id": "testimonial-1",
-                "quote": "Abbas transformed our vision into a stunning reality. The attention to detail and creative problem-solving was exceptional.",
-                "author": "Sarah Chen",
-                "role": "CEO, Quantum Inc.",
+                "id": "fact-1",
+                "quote": "My best code is written between 11 PM and 3 AM. There's something about the silence of the night that turns coffee into clean architecture.",
+                "author": "Night Owl",
+                "role": "Development Habitat",
                 "avatar": "/images/testimonials/sarah.jpg"
             },
             {
-                "id": "testimonial-2",
-                "quote": "Working with Abbas was a game-changer. The site not only looks incredible but performs flawlessly.",
-                "author": "Marcus Rodriguez",
-                "role": "Creative Director, Neural Design Co.",
+                "id": "fact-2",
+                "quote": "I have a dedicated 'graveyard' folder for 50+ side projects that never saw the light of day. Each one taught me something new that I use in production today.",
+                "author": "The Graveyard",
+                "role": "Continuous Learning",
                 "avatar": "/images/testimonials/marcus.jpg"
             },
             {
-                "id": "testimonial-3",
-                "quote": "Rare combination of technical excellence and artistic vision. Highly recommend for any high-end web project.",
-                "author": "Emily Nakamura",
-                "role": "Product Lead, Stellar Capital",
+                "id": "fact-3",
+                "quote": "If my mechanical keyboard isn't clicking, is the code even compiling? The tactile feedback is basically an essential part of my debugging process.",
+                "author": "Mech Keys",
+                "role": "Hardware Obsession",
                 "avatar": "/images/testimonials/emily.jpg"
+            },
+            {
+                "id": "fact-4",
+                "quote": "Caffeine is my primary dependency. I measure project complexity in 'cups per hour'. It's not an addiction, it's a performance optimization strategy.",
+                "author": "Caffeine Driven",
+                "role": "Fuel Source",
+                "avatar": "/images/testimonials/coffee.jpg"
+            },
+            {
+                "id": "fact-5",
+                "quote": "I spend more time tweaking my VS Code theme than I care to admit. If the syntax highlighting isn't perfect, how can the code be valid?",
+                "author": "Theme Enthusiast",
+                "role": "Visual Aesthetic",
+                "avatar": "/images/testimonials/theme.jpg"
+            },
+            {
+                "id": "fact-6",
+                "quote": "There is a special joy in deleting legacy code. Seeing the bundle size drop by even 2KB releases the same chemicals in my brain as eating chocolate.",
+                "author": "The Cleaner",
+                "role": "Refactoring Joy",
+                "avatar": "/images/testimonials/cleaner.jpg"
             }
         ]
     },

@@ -72,6 +72,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
+      id="hero"
       className="relative min-h-screen flex items-center justify-center px-6 md:px-10 lg:px-20"
     >
       <motion.div
@@ -136,21 +137,20 @@ export default function Hero() {
           variants={itemVariants}
           className="flex flex-wrap gap-6 mb-20"
         >
-          <a href={cta.primary.href}>
-            <Button
-              borderRadius="0.75rem"
-              className="bg-zinc-900 text-white border-sky-500/20 hover:border-sky-500/40 transition-all"
-              onMouseEnter={() => setCursorVariant('button')}
-              onMouseLeave={() => setCursorVariant('default')}
-            >
-              <span className="px-8 py-4 text-base font-medium">
-                {cta.primary.text}
-              </span>
-            </Button>
-          </a>
+          <Button
+            borderRadius="0.75rem"
+            className="bg-zinc-900 text-white border-sky-500/20 hover:border-sky-500/40 transition-all"
+            onClick={() =>  document.getElementById(cta.primary.href)?.scrollIntoView({ behavior: 'smooth' })}
+            onMouseEnter={() => setCursorVariant('button')}
+            onMouseLeave={() => setCursorVariant('default')}
+          >
+            <span className="px-8 py-4 text-base font-medium">
+              {cta.primary.text}
+            </span>
+          </Button>
 
-          <motion.a
-            href={cta.secondary.href}
+          <motion.div
+            onClick={() => document.getElementById(cta.secondary.href)?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-4 rounded-xl border-2 border-gray-700 hover:border-purple-500/50 transition-all text-base font-medium relative overflow-hidden group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -164,7 +164,7 @@ export default function Hero() {
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
             />
-          </motion.a>
+          </motion.div>
         </motion.div>
 
         {/* Stats */}

@@ -11,7 +11,7 @@ export default function GridBackground() {
     const opacity = useTransform(
         scrollYProgress,
         [0, 0.1, 0.9, 1],
-        [0.05, 0.02, 0.02, 0.05]
+        [0.4, 0.2, 0.2, 0.4]
     );
 
     useEffect(() => {
@@ -29,8 +29,8 @@ export default function GridBackground() {
                 className="w-full h-full"
                 style={{
                     backgroundImage: `
-            linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px)
+            linear-gradient(rgba(14, 165, 233, 0.18) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(14, 165, 233, 0.18) 1px, transparent 1px)
           `,
                     backgroundSize: '50px 50px',
                 }}
