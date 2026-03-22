@@ -8,7 +8,14 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import { useScrollContainer } from "@shared/context/ScrollContainerContext";
+
+const navTransition = {
+  type: "tween" as const,
+  duration: 0.45,
+  ease: [0.25, 0.1, 0.25, 1] as const,
+};
 
 
 interface NavbarProps {
@@ -28,7 +35,8 @@ interface NavItemsProps {
     link: string;
   }[];
   className?: string;
-  onItemClick?: (e: React.MouseEvent<HTMLAnchorElement>, link: string) => void;
+  activeLink?: string;
+  onItemClick: (e: React.MouseEvent<HTMLAnchorElement>, link: string) => void;
 }
 
 interface MobileNavProps {
@@ -50,11 +58,10 @@ interface MobileNavMenuProps {
 }
 
 export const Navbar = ({ children, className }: NavbarProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  const scrollContainerRef = useScrollContainer();
+  const { scrollY } = useScroll(
+    scrollContainerRef ? { container: scrollContainerRef } : undefined,
+  );
   const [visible, setVisible] = useState<boolean>(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -66,10 +73,11 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   });
 
   return (
-    <motion.div
-      ref={ref}
-      // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-      className={cn("sticky inset-x-0 top-20 z-40 w-full", className)}
+    <div
+      className={cn(
+        "sticky top-0 z-200 w-full shrink-0 self-start py-4",
+        className,
+      )}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -79,69 +87,88 @@ export const Navbar = ({ children, className }: NavbarProps) => {
           )
           : child,
       )}
-    </motion.div>
+    </div>
   );
 };
+
+const collapsedNavSurface =
+  "isolate overflow-hidden bg-white/88 backdrop-blur-[64px] backdrop-saturate-200 shadow-[0_8px_32px_rgba(0,0,0,0.12)] ring-1 ring-black/5 dark:bg-zinc-950/88 dark:shadow-[0_8px_40px_rgba(0,0,0,0.55)] dark:ring-white/15";
 
 export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
         width: visible ? "40%" : "100%",
-        y: visible ? 20 : 0,
+        paddingTop: visible ? "0.875rem" : "1.75rem",
+        paddingBottom: visible ? "0.875rem" : "1.75rem",
+        backgroundColor: visible ? "rgba(24, 24, 27, 0.8)" : "rgba(24, 24, 27, 0)",
+        backdropFilter: visible ? "blur(20px)" : "blur(0px)",
       }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 50,
-      }}
-      style={{
-        minWidth: "800px",
-      }}
+      transition={navTransition}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-201 mx-auto hidden min-h-14 min-w-0 w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 lg:flex",
+        visible && "shadow-2xl",
         className,
       )}
     >
-      {children}
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(child as React.ReactElement<any>, { visible })
+          : child
+      )}
     </motion.div>
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({ items, className, onItemClick, activeLink }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
+  const activeIndex = items.findIndex((item) => item.link === activeLink);
 
   return (
-    <motion.div
+    <div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        "relative hidden flex-1 flex-row items-center justify-center space-x-2 lg:flex",
         className,
       )}
     >
-      {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => setHovered(idx)}
-          onClick={(e) => onItemClick && onItemClick(e, item.link)}
-          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
-            />
-          )}
-          <span className="relative z-20">{item.name}</span>
-        </a>
-      ))}
-    </motion.div>
+      {items.map((item, idx) => {
+        const isActive = activeIndex === idx;
+        const isHovered = hovered === idx;
+        // Show pill if hovered, or if active and no other item is hovered
+        const showPill = isHovered || (isActive && hovered === null);
+
+        return (
+          <a
+            key={item.link}
+            onMouseEnter={() => setHovered(idx)}
+            onClick={(e) => {
+              onItemClick(e, item.link);
+            }}
+            href={item.link}
+            className={cn(
+              "relative z-20 flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors duration-200",
+              showPill
+                ? "text-zinc-900 dark:text-white"
+                : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white",
+            )}
+          >
+            {showPill && (
+              <motion.div
+                layoutId="nav-pill"
+                className="absolute inset-0 -z-10 rounded-full bg-zinc-100 dark:bg-zinc-800/80"
+                transition={{
+                  type: "spring",
+                  bounce: 0.2,
+                  duration: 0.6,
+                }}
+              />
+            )}
+            <span className="relative z-10">{item.name}</span>
+          </a>
+        );
+      })}
+    </div>
   );
 };
 
@@ -149,24 +176,16 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
         width: visible ? "90%" : "100%",
         paddingRight: visible ? "12px" : "0px",
         paddingLeft: visible ? "12px" : "0px",
         borderRadius: visible ? "4px" : "2rem",
-        y: visible ? 20 : 0,
+        backgroundColor: visible ? "rgba(24, 24, 27, 0.8)" : "rgba(24, 24, 27, 0)",
+        backdropFilter: visible ? "blur(20px)" : "blur(0px)",
       }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 50,
-      }}
+      transition={navTransition}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-201 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-4 py-2 lg:hidden",
         className,
       )}
     >
@@ -205,7 +224,7 @@ export const MobileNavMenu = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+            "absolute inset-x-0 top-16 z-210 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset] dark:bg-neutral-950",
             className,
           )}
         >

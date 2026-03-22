@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, Transition, Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
+import Lenis from "@studio-freight/lenis";
 import { CiMenuFries } from "react-icons/ci";
 import {
   FaArrowDown,
@@ -13,6 +14,7 @@ import {
 } from "react-icons/fa";
 import Header from "@shared/components/Header";
 import Logo from "@shared/components/Logo";
+import { ScrollContainerContext } from "@shared/context/ScrollContainerContext";
 
 const mainContainerVariants: Variants = {
   hidden: {
@@ -157,6 +159,40 @@ interface PageLayoutProps {
 }
 
 export default function PageLayout({ children }: PageLayoutProps) {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollContentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const wrapper = scrollContainerRef.current;
+    const content = scrollContentRef.current;
+    if (!wrapper || !content) return;
+
+    const lenis = new Lenis({
+      wrapper,
+      content,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    let rafId = 0;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <main className="relative min-h-screen w-full bg-zinc-950 text-gray-100 font-sans overflow-hidden">
 
@@ -205,14 +241,34 @@ export default function PageLayout({ children }: PageLayoutProps) {
         }}
       />
 
+      <div className="relative z-20 flex h-dvh min-h-0 w-full flex-col">
+        <ScrollContainerContext.Provider value={scrollContainerRef}>
+          <div
+            ref={scrollContainerRef}
+            className="relative flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden custom-scrollbar pb-10 px-6 md:px-10 lg:px-12"
+          >
+            <header className="z-50 pointer-events-none">
+              <div className="w-full fixed top-0 left-0 z-50 pointer-events-auto">
+                <Header />
+              </div>
+            </header>
+            <div ref={scrollContentRef} className="flex min-h-min min-w-0 flex-col mt-20">
+              {children}
+            </div>
+          </div>
+        </ScrollContainerContext.Provider>
+
+        <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none z-30" />
+      </div>
+
       <motion.div
-        className="relative w-full h-full min-h-screen z-10"
+        className="pointer-events-none relative z-30 min-h-screen w-full"
         variants={mainContainerVariants}
         initial="hidden"
         animate="show"
       >
         <motion.div
-          className="fixed hidden lg:flex right-0 top-0 bottom-0 pr-6 md:pr-10 lg:pr-12 py-32 flex-col space-y-6 items-end justify-center z-40"
+          className="pointer-events-auto fixed hidden lg:flex right-0 top-0 bottom-0 z-40 flex-col items-end justify-center space-y-6 py-32 pr-6 md:pr-10 lg:pr-12"
           initial="hidden"
           animate="show"
           transition={{
@@ -331,51 +387,6 @@ export default function PageLayout({ children }: PageLayoutProps) {
             </motion.span>
           </motion.div>
         </motion.div>
-
-        <div className="relative z-20 w-full min-h-screen flex flex-col">
-          <div className="w-full h-20 max-w-7xl mx-auto p-2 flex justify-between items-center">
-            {/* <Logo />
-            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-              {[
-                { label: "Home", href: "#hero" },
-                { label: "Showcase", href: "#projects" },
-                { label: "About", href: "#about" },
-                { label: "Skills", href: "#skills" },
-                { label: "Testimonials", href: "#testimonials" },
-                { label: "Contact", href: "#contact" },
-              ].map((item) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  className="relative text-sm font-medium text-gray-400 hover:text-sky-500 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item.label}
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-sky-500 origin-left"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  />
-                </motion.a>
-              ))}
-            </nav> */}
-
-            {/* Mobile Menu Icon (Placeholder for future implementation) */}
-            {/* <button className="md:hidden text-gray-400 hover:text-white transition-colors">
-              <CiMenuFries size={24} />
-            </button> */}
-
-            <Header />
-          </div>
-          <div className="relative flex-grow overflow-y-auto custom-scrollbar pb-10 px-6 md:px-10 lg:px-12">
-            {children}
-          </div>
-
-          {/* Bottom fade overlay (Remains fixed and visible) */}
-          <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none z-30" />
-        </div>
       </motion.div>
     </main>
   );
