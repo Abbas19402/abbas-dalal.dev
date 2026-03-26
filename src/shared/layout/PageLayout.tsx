@@ -258,7 +258,8 @@ export default function PageLayout({ children }: PageLayoutProps) {
           </div>
         </ScrollContainerContext.Provider>
 
-        <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none z-30" />
+        <div className="fixed top-0 left-0 right-0 h-24 bg-gradient-to-b from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none z-40" />
+        <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none z-40" />
       </div>
 
       <motion.div

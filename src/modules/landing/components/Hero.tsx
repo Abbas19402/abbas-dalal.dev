@@ -94,7 +94,7 @@ export default function Hero() {
         {/* Name with staggered letter reveal */}
         <motion.h1
           variants={nameVariants}
-          className="text-5xl md:text-7xl lg:text-9xl font-bold mb-6 tracking-tight"
+          className="text-[44px] md:text-7xl lg:text-9xl font-bold md:mb-6 tracking-tight"
           style={{ perspective: "1000px" }}
         >
           {name.split('').map((char, index) => (

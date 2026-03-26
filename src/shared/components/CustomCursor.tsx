@@ -82,6 +82,12 @@ export default function CustomCursor() {
     }, [setCursorVariant]);
 
     useEffect(() => {
+        const mediaQuery = window.matchMedia('(pointer: fine)');
+        if (!mediaQuery.matches) {
+            setMounted(false);
+            return;
+        }
+
         setMounted(true);
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseover', handleMouseOver);
@@ -91,13 +97,6 @@ export default function CustomCursor() {
             window.removeEventListener('mouseover', handleMouseOver);
         };
     }, [handleMouseMove, handleMouseOver]);
-
-    useEffect(() => {
-        const mediaQuery = window.matchMedia('(pointer: fine)');
-        if (!mediaQuery.matches) {
-            setMounted(false);
-        }
-    }, []);
 
     if (!mounted) return null;
 

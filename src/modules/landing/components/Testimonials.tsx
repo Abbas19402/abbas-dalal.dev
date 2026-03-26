@@ -36,19 +36,37 @@ export default function Testimonials() {
                     <p className="text-gray-400 text-lg tracking-wide">{subtitle}</p>
                 </motion.div>
 
-                <Carousel
-                    items={items}
-                    itemsPerSlide={2}
-                    gap={24}
-                    renderItem={(item) => (
-                        <InsightCard
-                            icon={getIcon(item.id)}
-                            title={item.author}
-                            category={item.role}
-                            content={item.quote}
-                        />
-                    )}
-                />
+                <div className="md:hidden">
+                    <Carousel
+                        items={items}
+                        itemsPerSlide={1}
+                        gap={16}
+                        renderItem={(item) => (
+                            <InsightCard
+                                icon={getIcon(item.id)}
+                                title={item.author}
+                                category={item.role}
+                                content={item.quote}
+                            />
+                        )}
+                    />
+                </div>
+
+                <div className="hidden md:block">
+                    <Carousel
+                        items={items}
+                        itemsPerSlide={2}
+                        gap={24}
+                        renderItem={(item) => (
+                            <InsightCard
+                                icon={getIcon(item.id)}
+                                title={item.author}
+                                category={item.role}
+                                content={item.quote}
+                            />
+                        )}
+                    />
+                </div>
             </div>
         </section>
     );

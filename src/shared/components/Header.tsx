@@ -35,7 +35,7 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState("");
 
   const LogoWrapper = () => (
-    <div className="absolute left-0 top-0 h-full flex items-center pl-4 lg:pl-10 pointer-events-none">
+    <div className="pointer-events-none absolute left-0 top-0 hidden h-full items-center pl-6 lg:flex lg:pl-10">
       <div className="pointer-events-auto">
         <Logo className="h-10 w-10 shrink-0 lg:h-12 lg:w-12" />
       </div>
@@ -43,6 +43,9 @@ const Header = () => {
   );
 
   React.useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 1023px)').matches;
+    if (isMobile) return;
+
     const observerOptions = {
       root: null,
       rootMargin: '-10% 0px -40% 0px',
@@ -69,6 +72,7 @@ const Header = () => {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
     e.preventDefault();
+    setActiveSection(link);
     const targetId = link.replace('#', '');
     const element = document.getElementById(targetId);
     
@@ -88,9 +92,9 @@ const Header = () => {
         </NavBody>
 
         {/* Mobile Navigation */}
-        <MobileNav>
-          <MobileNavHeader>
-            <Logo />
+        <MobileNav className="px-3 py-2 sm:px-4">
+          <MobileNavHeader className="px-2 sm:px-3">
+            <Logo className="h-12 w-12 shrink-0 sm:h-14 sm:w-14" />
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -102,17 +106,22 @@ const Header = () => {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <motion.a
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={(e) => handleNavClick(e, item.link)}
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.03 * idx, duration: 0.22 }}
                 className={cn(
-                  "relative text-neutral-600 dark:text-neutral-300",
-                  activeSection === item.link && "text-black dark:text-white font-semibold"
+                  "group relative flex w-full items-center rounded-lg px-3 py-2.5 text-lg tracking-wide text-neutral-300 transition-colors",
+                  "hover:bg-white/5 hover:text-white",
+                  activeSection === item.link && "bg-white/8 text-white font-semibold"
                 )}
               >
+                <span className="mr-3 text-xs text-sky-400/80">{`0${idx + 1}`}</span>
                 <span className="block">{item.name}</span>
-              </a>
+              </motion.a>
             ))}
           </MobileNavMenu>
         </MobileNav>

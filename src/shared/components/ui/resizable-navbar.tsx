@@ -176,16 +176,16 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
-        width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
-        backgroundColor: visible ? "rgba(24, 24, 27, 0.8)" : "rgba(24, 24, 27, 0)",
-        backdropFilter: visible ? "blur(20px)" : "blur(0px)",
+        width: "100%",
+        paddingRight: "0px",
+        paddingLeft: "0px",
+        borderRadius: "1rem",
+        backgroundColor: "rgba(24, 24, 27, 0)",
+        backdropFilter: "none",
       }}
       transition={navTransition}
       className={cn(
-        "relative z-201 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-4 py-2 lg:hidden",
+        "relative z-201 mx-auto flex w-full max-w-[calc(100vw-1rem)] flex-col items-center justify-between px-3 py-2 sm:max-w-[calc(100vw-2rem)] sm:px-4 lg:hidden",
         className,
       )}
     >
@@ -201,7 +201,7 @@ export const MobileNavHeader = ({
   return (
     <div
       className={cn(
-        "flex w-full flex-row items-center justify-between",
+        "flex min-h-12 w-full flex-row items-center justify-between gap-3",
         className,
       )}
     >
@@ -220,15 +220,22 @@ export const MobileNavMenu = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, y: -10, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -10, scale: 0.98 }}
+          transition={{ duration: 0.28, ease: "easeOut" }}
           className={cn(
-            "absolute inset-x-0 top-16 z-210 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset] dark:bg-neutral-950",
+            "absolute inset-x-0 top-16 z-210 w-full overflow-hidden rounded-2xl border border-sky-400/20 bg-zinc-950/70 px-3 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-2xl",
             className,
           )}
         >
-          {children}
+          <div className="pointer-events-none absolute inset-0 bg-zinc-950/40 backdrop-blur-[18px] backdrop-saturate-150" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-900/45 via-zinc-950/20 to-zinc-950/45" />
+          <div className="pointer-events-none absolute -top-12 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-sky-500/20 blur-2xl" />
+          <div className="pointer-events-none absolute -right-10 bottom-2 h-20 w-20 rounded-full bg-fuchsia-500/20 blur-2xl" />
+          <div className="relative z-10 flex flex-col gap-1 rounded-xl border border-white/10 bg-black/35 p-3">
+            {children}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
