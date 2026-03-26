@@ -181,14 +181,32 @@ export default function PageLayout({ children }: PageLayoutProps) {
     });
 
     let rafId = 0;
+    let isDocumentVisible = document.visibilityState === "visible";
     function raf(time: number) {
       lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+      if (isDocumentVisible) {
+        rafId = requestAnimationFrame(raf);
+      }
     }
     rafId = requestAnimationFrame(raf);
 
+    const handleVisibilityChange = () => {
+      const wasVisible = isDocumentVisible;
+      isDocumentVisible = document.visibilityState === "visible";
+
+      if (!isDocumentVisible && rafId) {
+        cancelAnimationFrame(rafId);
+      }
+
+      if (isDocumentVisible && !wasVisible) {
+        rafId = requestAnimationFrame(raf);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       cancelAnimationFrame(rafId);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       lenis.destroy();
     };
   }, []);
@@ -258,8 +276,8 @@ export default function PageLayout({ children }: PageLayoutProps) {
           </div>
         </ScrollContainerContext.Provider>
 
-        <div className="fixed top-0 left-0 right-0 h-24 bg-gradient-to-b from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none z-40" />
-        <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none z-40" />
+        <div className="fixed top-0 left-0 right-0 h-24 bg-linear-to-b from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none z-40" />
+        <div className="fixed bottom-0 left-0 right-0 h-24 bg-linear-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none z-40" />
       </div>
 
       <motion.div
@@ -278,7 +296,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
           } as Transition}
         >
           <motion.div
-            className="absolute right-6 md:right-10 lg:right-[3.5rem] top-32 bottom-32 w-px bg-gradient-to-b from-transparent via-sky-500/30 to-transparent"
+            className="absolute right-6 md:right-10 lg:right-14 top-32 bottom-32 w-px bg-linear-to-b from-transparent via-sky-500/30 to-transparent"
             initial={{ scaleY: 0 }}
             animate={{
               scaleY: 1,
@@ -337,7 +355,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
         >
           <motion.div className="flex flex-col items-center">
             <motion.div
-              className="w-px h-12 mb-2 bg-gradient-to-b from-transparent via-sky-500 to-transparent"
+              className="w-px h-12 mb-2 bg-linear-to-b from-transparent via-sky-500 to-transparent"
               animate={{
                 scaleY: [1, 1.2, 1],
                 opacity: [0.5, 1, 0.5],

@@ -1,4 +1,3 @@
-'use client'
 import Hero from '../components/Hero';
 import Showcase from '../components/Showcase';
 import About from '../components/About';

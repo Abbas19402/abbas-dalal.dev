@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { cn } from '@shared/utils'
 import { Navbar, NavBody, NavbarLogo, NavItems, NavbarButton, MobileNav, MobileNavHeader, MobileNavToggle, MobileNavMenu } from '@shared/components/ui/resizable-navbar'
 import Logo from './Logo';
@@ -8,28 +8,31 @@ import { motion } from 'motion/react';
 
 
 const Header = () => {
-  const navItems = [
-    {
-      name: "Projects",
-      link: "#projects",
-    },
-    {
-      name: "About",
-      link: "#about",
-    },
-    {
-      name: "Skills",
-      link: "#skills",
-    },
-    {
-      name: "Testimonials",
-      link: "#testimonials",
-    },
-    {
-      name: "Contact",
-      link: "#contact",
-    },
-  ];
+  const navItems = useMemo(
+    () => [
+      {
+        name: "Projects",
+        link: "#projects",
+      },
+      {
+        name: "About",
+        link: "#about",
+      },
+      {
+        name: "Skills",
+        link: "#skills",
+      },
+      {
+        name: "Testimonials",
+        link: "#testimonials",
+      },
+      {
+        name: "Contact",
+        link: "#contact",
+      },
+    ],
+    []
+  );
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");

@@ -8,7 +8,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useScrollContainer } from "@shared/context/ScrollContainerContext";
 
 const navTransition = {
@@ -63,12 +63,13 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     scrollContainerRef ? { container: scrollContainerRef } : undefined,
   );
   const [visible, setVisible] = useState<boolean>(false);
+  const visibleRef = useRef(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
+    const nextVisible = latest > 100;
+    if (nextVisible !== visibleRef.current) {
+      visibleRef.current = nextVisible;
+      setVisible(nextVisible);
     }
   });
 
@@ -230,7 +231,7 @@ export const MobileNavMenu = ({
           )}
         >
           <div className="pointer-events-none absolute inset-0 bg-zinc-950/40 backdrop-blur-[18px] backdrop-saturate-150" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-900/45 via-zinc-950/20 to-zinc-950/45" />
+          <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-zinc-900/45 via-zinc-950/20 to-zinc-950/45" />
           <div className="pointer-events-none absolute -top-12 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-sky-500/20 blur-2xl" />
           <div className="pointer-events-none absolute -right-10 bottom-2 h-20 w-20 rounded-full bg-fuchsia-500/20 blur-2xl" />
           <div className="relative z-10 flex flex-col gap-1 rounded-xl border border-white/10 bg-black/35 p-3">

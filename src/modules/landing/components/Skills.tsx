@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
-import { motion, useSpring, useMotionValue, useTransform } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Environment, MeshTransmissionMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -185,8 +185,11 @@ function RotatingShape() {
 }
 
 const WebGLCard = ({ skills }: { skills: SkillItem[] }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { margin: '200px 0px 200px 0px' });
+
   return (
-    <div className="h-full bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-6 overflow-hidden relative group">
+    <div ref={cardRef} className="h-full bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-6 overflow-hidden relative group">
       <div className="absolute inset-0 bg-linear-to-br from-pink-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="absolute top-6 left-6 z-10">
@@ -198,7 +201,11 @@ const WebGLCard = ({ skills }: { skills: SkillItem[] }) => {
       </div>
 
       <div className="absolute inset-0 top-16">
-        <Canvas camera={{ position: [0, 0, 5] }}>
+        <Canvas
+          camera={{ position: [0, 0, 5] }}
+          frameloop={isInView ? 'always' : 'never'}
+          gl={{ powerPreference: 'high-performance' }}
+        >
           <ambientLight intensity={0.5} />
           <Environment preset="city" />
           <RotatingShape />

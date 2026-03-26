@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { motion, useSpring, AnimatePresence } from 'motion/react';
 import { useUIStore } from '@shared/store/useUIStore';
 
 export default function CustomCursor() {
+    const rafRef = useRef<number | null>(null);
+    const latestPointer = useRef({ x: 0, y: 0 });
+
     const [mounted, setMounted] = useState(false);
     const cursorVariant = useUIStore((state) => state.cursorVariant);
     const setCursorVariant = useUIStore((state) => state.setCursorVariant);
@@ -48,33 +51,35 @@ export default function CustomCursor() {
     });
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
-        cursorX.set(e.clientX);
-        cursorY.set(e.clientY);
-        ringX.set(e.clientX);
-        ringY.set(e.clientY);
+        latestPointer.current.x = e.clientX;
+        latestPointer.current.y = e.clientY;
+
+        if (rafRef.current !== null) return;
+
+        rafRef.current = window.requestAnimationFrame(() => {
+            rafRef.current = null;
+            const { x, y } = latestPointer.current;
+            cursorX.set(x);
+            cursorY.set(y);
+            ringX.set(x);
+            ringY.set(y);
+        });
     }, [cursorX, cursorY, ringX, ringY]);
 
     const handleMouseOver = useCallback((e: MouseEvent) => {
         const target = e.target as HTMLElement;
         if (!target) return;
 
-        const computedStyle = window.getComputedStyle(target);
-        
-        if (
-            computedStyle.cursor === 'pointer' || 
-            target.tagName === 'A' || 
-            target.tagName === 'BUTTON' ||
-            target.closest('a') || 
-            target.closest('button') ||
-            target.getAttribute('role') === 'button'
-        ) {
+        const interactiveTarget = target.closest(
+            'a, button, [role="button"], [data-cursor="button"]'
+        );
+        const textTarget = target.closest(
+            'input, textarea, [contenteditable="true"], [data-cursor="text"]'
+        );
+
+        if (interactiveTarget) {
             setCursorVariant('button');
-        } else if (
-            computedStyle.cursor === 'text' ||
-            target.tagName === 'INPUT' ||
-            target.tagName === 'TEXTAREA' ||
-            target.getAttribute('contenteditable') === 'true'
-        ) {
+        } else if (textTarget) {
             setCursorVariant('text');
         } else {
             setCursorVariant('default');
@@ -95,6 +100,9 @@ export default function CustomCursor() {
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseover', handleMouseOver);
+            if (rafRef.current !== null) {
+                cancelAnimationFrame(rafRef.current);
+            }
         };
     }, [handleMouseMove, handleMouseOver]);
 
@@ -110,7 +118,7 @@ export default function CustomCursor() {
     const currentSize = cursorSizes[cursorVariant] || cursorSizes.default;
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-[99999]">
+        <div className="fixed inset-0 pointer-events-none z-99999">
             {/* Outer Liquid Ring */}
             <motion.div
                 className="absolute top-0 left-0 flex items-center justify-center pointer-events-none"
